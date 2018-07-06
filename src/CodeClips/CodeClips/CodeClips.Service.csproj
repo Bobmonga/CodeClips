@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CodeClips.Data\CodeClips.Data.csproj" />
     <ProjectReference Include="..\CodeClips.Entities\CodeClips.Entities.csproj" />
   </ItemGroup>
 

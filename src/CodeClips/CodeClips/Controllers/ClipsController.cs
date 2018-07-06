@@ -1,5 +1,7 @@
-﻿using CodeClips.Entities.Clips;
+﻿using CodeClips.Data.Repos;
+using CodeClips.Entities.Clips;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace CodeClips.Controllers
@@ -7,23 +9,18 @@ namespace CodeClips.Controllers
     [Route("api/[controller]")]
     public class ClipsController : Controller
     {
+        IRepo _repository;
+
+        public ClipsController(IRepo repository)
+        {
+            _repository = repository;
+        }
+
         // GET api/values
         [HttpGet]
         public IActionResult Get()
         {
-            Clip clip = new Clip
-            {
-                Title = "REDIS Repo",
-                Content = "Here is some code",
-                Tags = new List<string>
-                {
-                    "C#",
-                    "REDIS",
-                    "Repository"
-                }
-            };
-
-            return new OkObjectResult(clip);
+            return new OkObjectResult(_repository.GetClip(Guid.NewGuid()));
         }
 
         // GET api/values/5
