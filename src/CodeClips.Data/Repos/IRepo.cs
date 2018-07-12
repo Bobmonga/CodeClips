@@ -8,5 +8,9 @@ namespace CodeClips.Data.Repos
     public interface IRepo
     {
         Clip GetClip(Guid id);
+
+        Clip AddClip(Clip item);
+
+        IEnumerable<Clip> GetAllClips();
     }
 }

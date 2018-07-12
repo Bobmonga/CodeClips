@@ -20,20 +20,21 @@ namespace CodeClips.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new OkObjectResult(_repository.GetClip(Guid.NewGuid()));
+            return new OkObjectResult(_repository.GetAllClips());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(Guid id)
         {
-            return "value";
+            return new OkObjectResult(_repository.GetClip(id));
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public Clip Post([FromBody]Clip clip)
         {
+            return _repository.AddClip(clip);            
         }
 
         // PUT api/values/5

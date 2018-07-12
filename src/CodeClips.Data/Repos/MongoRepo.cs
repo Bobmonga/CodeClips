@@ -24,7 +24,7 @@ namespace CodeClips.Data.Repos
             return item;
         }
 
-        public IEnumerable<Clip> GetAllBananas()
+        public IEnumerable<Clip> GetAllClips()
         {
             return _clips.Find(c => true).ToList();
         }
@@ -34,7 +34,7 @@ namespace CodeClips.Data.Repos
             return _clips.Find(c => c.Id == id).Single();
         }
 
-        public bool RemoveBanana(string id)
+        public bool RemoveClip(string id)
         {
             throw new System.NotImplementedException();
         }

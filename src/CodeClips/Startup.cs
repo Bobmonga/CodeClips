@@ -37,7 +37,12 @@ namespace CodeClips
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "api/{controller=Clips}/{action=Get}/{id?}");
+            });
         }
     }
 }
