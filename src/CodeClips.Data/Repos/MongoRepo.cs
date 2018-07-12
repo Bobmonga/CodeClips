@@ -1,4 +1,5 @@
 ﻿using CodeClips.Entities.Clips;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,11 @@ namespace CodeClips.Data.Repos
             _clips = _db.GetCollection<Clip>("Clips");
         }
 
-        public Clip AddClip(Clip item)
+        public Clip AddClip(Clip clip)
         {
-            _clips.InsertOne(item);
-            return item;
+            _clips.InsertOne(clip);
+
+            return clip;
         }
 
         public IEnumerable<Clip> GetAllClips()
@@ -34,14 +36,18 @@ namespace CodeClips.Data.Repos
             return _clips.Find(c => c.Id == id).Single();
         }
 
-        public bool RemoveClip(string id)
+        public bool RemoveClip(Guid id)
         {
-            throw new System.NotImplementedException();
+            DeleteResult del = _clips.DeleteOne(c => c.Id == id);
+            
+            return del.DeletedCount == 1;
         }
 
-        public bool UpdateClip(string id, Clip item)
+        public bool UpdateClip(Guid id, Clip clip)
         {
-            throw new System.NotImplementedException();
+            UpdateResult up = _clips.UpdateOne(Builders<Clip>.Filter.Eq("Id", id), Builders<Clip>.Update.Set("Title", clip.Title));
+            
+            return up.ModifiedCount == 1;
         }
     }
 }

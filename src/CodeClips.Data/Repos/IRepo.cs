@@ -12,5 +12,7 @@ namespace CodeClips.Data.Repos
         Clip AddClip(Clip item);
 
         IEnumerable<Clip> GetAllClips();
+
+        bool RemoveClip(Guid id);
     }
 }
