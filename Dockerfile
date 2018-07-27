@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore-build:2.0 AS build-env
+FROM microsoft/dotnet:sdk AS build-env
 COPY src /app
 WORKDIR /app
 
