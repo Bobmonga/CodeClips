@@ -7,7 +7,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/aspnetcore:2.0
+FROM microsoft/aspnetcore:2.0-runtime
 WORKDIR /app
 COPY --from=build-env /app/CodeClips/out .
 ENV ASPNETCORE_URLS http://*:5000
